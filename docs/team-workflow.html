@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="description" content="团队角色、从问题到上线的九步流程，以及计划时段、事件驱动和尚未确认的时间。">
+<title>团队怎么协作</title>
+<style>
+  :root { color-scheme: light; }
+  *, *::before, *::after { box-sizing: border-box; }
+  html { font-size: 100%; }
+  body {
+    margin: 0 auto;
+    max-width: 42rem;
+    padding: 1.25rem 1rem 2.5rem;
+    font-family: "PingFang SC", "Hiragino Sans GB", "Noto Sans SC", "Microsoft YaHei", "Source Han Sans SC", sans-serif;
+    font-size: 1.0625rem;
+    line-height: 1.75;
+    color: #1c1917;
+    background: #fafaf9;
+  }
+  a { color: #1e3a8a; text-underline-offset: 0.15em; }
+  a:focus-visible { outline: 3px solid #1e3a8a; outline-offset: 3px; }
+  .skip {
+    position: absolute;
+    left: 0.5rem;
+    top: 0.5rem;
+    transform: translateY(-150%);
+    background: #1c1917;
+    color: #fff;
+    padding: 0.4rem 0.7rem;
+  }
+  .skip:focus { transform: none; }
+  header, main, footer { overflow-wrap: break-word; }
+  h1 { margin: 0.2rem 0 0.4rem; font-size: 1.75rem; line-height: 1.3; }
+  h2 { margin: 2rem 0 0.6rem; font-size: 1.3rem; line-height: 1.35; }
+  p { margin: 0.6rem 0; }
+  .meta, .source { color: #44403c; }
+  nav { margin-top: 0.8rem; }
+  nav ul, main ul, main ol { margin: 0.4rem 0 0.6rem; padding-left: 1.3rem; }
+  li { margin: 0.45rem 0; }
+  .notice {
+    margin: 1rem 0;
+    padding: 0.85rem 1rem;
+    background: #fff;
+    border: 2px solid #1c1917;
+    border-radius: 0.4rem;
+  }
+  dl { margin: 0.6rem 0 1rem; }
+  dt { font-weight: 700; margin-top: 0.7rem; }
+  dd { margin: 0.15rem 0 0; }
+  .schedule { margin: 0.8rem 0 0; padding: 0; list-style: none; }
+  .schedule li {
+    margin: 0 0 0.85rem;
+    padding: 0.85rem 1rem;
+    background: #fff;
+    border: 1px solid #d6d3d1;
+    border-radius: 0.4rem;
+  }
+  .schedule h3 { margin: 0 0 0.45rem; font-size: 1.125rem; line-height: 1.4; }
+  .schedule p { margin: 0.35rem 0; }
+  .schedule .label { font-weight: 700; color: #44403c; }
+  footer { margin-top: 2rem; padding-top: 1rem; border-top: 1px solid #d6d3d1; }
+</style>
+</head>
+<body>
+<a class="skip" href="#main">跳到正文</a>
+<header>
+  <h1>团队怎么协作</h1>
+  <p class="meta">更新时间：<time datetime="2026-11-14">2026年11月14日</time>。计划时间均为上海时间（Asia/Shanghai，UTC+8）。</p>
+  <nav aria-label="相关页面">
+    <a href="index.html">返回日报索引</a>
+  </nav>
+</header>
+<main id="main">
+  <section aria-labelledby="status-title">
+    <h2 id="status-title">当前状态</h2>
+    <p class="notice">截至2026-11-14，计划仍启用；当前项目执行按用户暂停指令停止，仅本协作说明页获准继续。</p>
+    <p>本次只增加这份协作说明，不恢复其他任务，也不改动定时配置。计划仍启用，是说已保存的例行时段还在；这些环节此刻并不都在执行，例行配置也没有停用。</p>
+  </section>
+
+  <section aria-labelledby="roles-title">
+    <h2 id="roles-title">七个角色</h2>
+    <p>各角色负责的事不同。</p>
+    <ul>
+      <li><strong>总负责人：</strong>收敛问题、排优先级、明确负责人和验收标准，统一调度并跟进交付。</li>
+      <li><strong>项目负责人：</strong>汇总项目事实、业务状态和依赖，整理具体交接包与团队日报，区分已完成、未知和下一步。</li>
+      <li><strong>产品负责人：</strong>判断用户问题和功能先后，写清最小范围、前置条件与验收要求。</li>
+      <li><strong>SEO负责人：</strong>核查搜索可发现性和页面信息，区分技术设置、采集数据与实际搜索效果。</li>
+      <li><strong>市场负责人：</strong>观察趋势、竞品与机会，用可读来源支持建议。</li>
+      <li><strong>技术负责人：</strong>维护数据与工程，通过可审查的修改和测试交付，准备构建与发布。</li>
+      <li><strong>设计负责人：</strong>核查页面呈现与首次使用体验，提供设计和体验验收意见。</li>
+    </ul>
+    <p>每份日报先逐席写今天做了什么、发现什么问题、接下来计划，再汇总整体状态、主要问题和优先级下一步。缺少记录就写未见新增交付，计划未核实就写待确认，不用建议冒充已接单。</p>
+  </section>
+
+  <section aria-labelledby="flow-title">
+    <h2 id="flow-title">九步流程</h2>
+    <p>一个问题走到上线，按下面九步。源码合并和正式上线是两件事。</p>
+    <ol>
+      <li><strong>发现问题。</strong>各角色给出问题、证据和受影响范围。</li>
+      <li><strong>总负责人分派。</strong>明确优先级、负责人、交付物、验收条件和依赖。</li>
+      <li><strong>技术 PR。</strong>技术准备修改源码、测试，并提交代码审查。不直接改正式站。</li>
+      <li><strong>集中验收。</strong>核对改动与证据。同一改动完整验一次；未变且仍有效的证据可以复用，后续只审新增差异。</li>
+      <li><strong>最终负责人批准源码合并。</strong>审查完成并由最终负责人批准后，才合入主分支。合并不等于上线。</li>
+      <li><strong>构建与灰度。</strong>构建成功后进入灰度准备与预览核验。自动部分以实际配置和运行记录为准，不能把一次手工成功当作整条自动链路已经稳定。</li>
+      <li><strong>最终负责人批准正式发布。</strong>获得这次批准后，只发布本次确认过的改动，并保留回滚条件。</li>
+      <li><strong>上线核验。</strong>核对真实版本、公开页面和关键访问设置。上传成功不等于用户已经能访问。</li>
+      <li><strong>数据反馈。</strong>读取真实搜索数据与使用反馈，形成下一轮问题。采集成功不等于增长，零行数据不等于全站没有流量。</li>
+    </ol>
+  </section>
+
+  <section aria-labelledby="when-title">
+    <h2 id="when-title">什么时候运行</h2>
+    <p>时间分成三类：已读到的计划时段、由事件触发的步骤，以及本页尚未确认精确时刻的工作。</p>
+    <dl>
+      <dt>计划时段</dt>
+      <dd>工作日里已读到的例行时间，含前后15分钟。截至2026-11-14，这些计划仍启用。</dd>
+      <dt>事件驱动</dt>
+      <dd>没有统一钟点。是否发生，取决于证据、审查、构建或批准。</dd>
+      <dt>尚未确认</dt>
+      <dd>本页没有核实精确时刻。不用第一次运行的时间去推断计划时间。</dd>
+    </dl>
+    <p class="source">调度时间据总负责人配置回读；日报时间据项目负责人配置回读，2026-11-14。</p>
+    <p><strong>计划时段、事件驱动与尚未确认的时刻</strong></p>
+    <ul class="schedule">
+      <li>
+        <h3>团队调度</h3>
+        <p><span class="label">计划时间或触发条件。</span>计划时段：工作日 10:00、16:00，前后15分钟。</p>
+        <p><span class="label">说明。</span>调度时间据总负责人配置回读，2026-11-14。计划仍启用。当前项目执行按用户暂停指令停止，不表示该例行已停用。</p>
+      </li>
+      <li>
+        <h3>项目负责人内部日报</h3>
+        <p><span class="label">计划时间或触发条件。</span>计划时段：工作日 19:00，前后15分钟。</p>
+        <p><span class="label">说明。</span>日报时间据项目负责人配置回读，2026-11-14。已有一次定时生成记录。生成与公开发布是两回事。</p>
+      </li>
+      <li>
+        <h3>问题发现、执行、审查与验收</h3>
+        <p><span class="label">计划时间或触发条件。</span>事件驱动：随任务推进，无统一钟点。</p>
+        <p><span class="label">说明。</span>取决于证据、依赖和任务安排。当前项目执行按暂停指令停止。计划仍启用，并不表示这些环节此刻正在进行。</p>
+      </li>
+      <li>
+        <h3>源码合并</h3>
+        <p><span class="label">计划时间或触发条件。</span>事件驱动：审查完成并获批准后。</p>
+        <p><span class="label">说明。</span>没有固定钟点，不跳过批准。合并不等于上线。</p>
+      </li>
+      <li>
+        <h3>构建与灰度</h3>
+        <p><span class="label">计划时间或触发条件。</span>事件驱动：构建成功并具备发布条件后。</p>
+        <p><span class="label">说明。</span>没有统一钟点。自动触发覆盖到哪些步骤，要按实际配置和运行记录核验，不能把一次手工成功写成整条自动链路已经稳定。</p>
+      </li>
+      <li>
+        <h3>正式发布</h3>
+        <p><span class="label">计划时间或触发条件。</span>事件驱动：获批准后。</p>
+        <p><span class="label">说明。</span>没有固定钟点。批准与上线结果分开记录。</p>
+      </li>
+      <li>
+        <h3>其他角色例行、搜索采集及辅助脚本</h3>
+        <p><span class="label">计划时间或触发条件。</span>精确时刻本页未确认。</p>
+        <p><span class="label">说明。</span>不用首次运行的时间推断计划时间。</p>
+      </li>
+    </ul>
+  </section>
+
+  <section aria-labelledby="auto-title">
+    <h2 id="auto-title">哪些还不能说成已经自动化</h2>
+    <p>内部日报已有一次真实的定时生成记录，公开日报也有单次公开交付记录。不能据此称自动公开的全链路已经稳定。搜索数据有采集记录，不等于自动分析、自动优化已经实现。自动灰度覆盖到哪些步骤，同样要按实际运行核验，不能写成已经稳定。人工判断、验收和正式发布批准仍是明确环节。</p>
+    <p>本页是协作方式说明，不是实时任务面板。状态或计划有新的已核实记录时，再更新本页。公开本页不会恢复其他任务，也不会扩大权限，也不会改动定时配置。</p>
+  </section>
+</main>
+<footer>
+  <p class="source">调度时间据总负责人配置回读；日报时间据项目负责人配置回读，2026-11-14。</p>
+  <p><a href="index.html">返回日报索引</a></p>
+</footer>
+</body>
+</html>
